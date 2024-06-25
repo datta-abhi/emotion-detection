@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 import os
-from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 import yaml
 import logging
 
@@ -54,9 +55,9 @@ def load_data(file_path: str) -> pd.DataFrame:
         raise
 
 def apply_tfidf(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: int) -> tuple:
-    """Apply Bag of Words (CountVectorizer) to the data."""
+    """Apply TFIDF Vectorizer to the data."""
     try:
-        vectorizer = CountVectorizer(max_features=max_features)
+        vectorizer = TfidfVectorizer(max_features=max_features)
 
         X_train = train_data['content'].values
         y_train = train_data['sentiment'].values
